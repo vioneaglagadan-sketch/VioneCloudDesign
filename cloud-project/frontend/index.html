@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cloud IT Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            width: 320px;
+            margin: auto;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>☁️ Cloud Computing IT Project</h1>
+
+<div class="card">
+    <h3 id="project">Click button to load</h3>
+    <p id="status"></p>
+    <p id="message"></p>
+
+    <button onclick="loadData()">Load Cloud Data</button>
+</div>
+
+<script>
+async function loadData() {
+    const res = await fetch("http://localhost:3000/api/cloud-info");
+    const data = await res.json();
+
+    document.getElementById("project").innerText = data.project;
+    document.getElementById("status").innerText = data.status;
+    document.getElementById("message").innerText = data.message;
+}
+</script>
+
+</body>
+</html>
